@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+@keyframes laser-glow {
+  0% {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5), inset 0 0 20px rgba(139, 92, 246, 0.1);
+  }
+  25% {
+    border-color: #7c3aed;
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.6), inset 0 0 20px rgba(124, 58, 237, 0.15);
+  }
+  50% {
+    border-color: #06b6d4;
+    box-shadow: 0 0 40px rgba(6, 182, 212, 0.7), inset 0 0 25px rgba(6, 182, 212, 0.2);
+  }
+  75% {
+    border-color: #7c3aed;
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.6), inset 0 0 20px rgba(124, 58, 237, 0.15);
+  }
+  100% {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5), inset 0 0 20px rgba(139, 92, 246, 0.1);
+  }
+}
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.8);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 25px rgba(124, 58, 237, 1);
+  }
+}
+@keyframes float-up {
+  0% {
+    transform: translateY(0) perspective(1000px) rotateX(0deg);
+  }
+  100% {
+    transform: translateY(-8px) perspective(1000px) rotateX(5deg);
+  }
+}
+@keyframes metallic-shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+@layer utilities {
+  .laser-glow-border {
+    @apply border-2 animate-none;
+    animation: laser-glow 4s ease-in-out infinite;
+  }
+  .focus-laser-glow {
+    @apply relative;
+  }
+  .focus-laser-glow:focus-within {
+    @apply drop-shadow-2xl;
+    animation: float-up 0.6s ease-out forwards;
+  }
+  .gradient-button-pulse {
+    @apply bg-gradient-to-r from-violet-600 via-purple-600 to-cyan-500 hover:from-violet-500 hover:via-purple-500 hover:to-cyan-400;
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  .gradient-text-premium {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 50%, #e0c3fc 100%);
+    background-size: 200% 200%;
+    animation: metallic-shimmer 8s linear infinite;
+  }
+  .ultra-dark-card {
+    @apply bg-[#0f0f0f] border border-[#1a1a1a] rounded-3xl;
+  }
+  .neon-glow {
+    @apply shadow-2xl;
+  }
+  .text-wrap-safe {
+    @apply break-words;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+}
